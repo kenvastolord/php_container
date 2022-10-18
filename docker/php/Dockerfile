@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y git unzip \
         redis
 
 # Install PHP extensions Type docker-php-ext-install to see available extensions
-RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-install pdo pdo_mysql mysqli
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
