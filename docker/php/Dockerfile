@@ -6,7 +6,7 @@ ARG TIMEZONE
 COPY ./php.ini /usr/local/etc/php/conf.d/docker-php-config.ini
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y git unzip \
+RUN apt-get update && apt-get install -y procps zip unzip libzip-dev libpq-dev vim git unzip \
     && pecl install \
         apcu \
         xdebug \
@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y git unzip \
         redis
 
 # Install PHP extensions Type docker-php-ext-install to see available extensions
-RUN docker-php-ext-install pdo pdo_mysql mysqli
+RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql mysqli zip
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
